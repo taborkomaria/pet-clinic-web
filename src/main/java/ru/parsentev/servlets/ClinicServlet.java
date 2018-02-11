@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 public class ClinicServlet extends HttpServlet {
 
@@ -39,10 +41,21 @@ public class ClinicServlet extends HttpServlet {
                         "</head>" +
                         "<body>" +
                         "     <form action='"+req.getContextPath()+"/' method='post'>" +
-                        "         Name : <input type='text' name='name'>"+
-                        "         <input type='submit' value='Submit'>"+
+                        "         Pet's name: <input type='text' name='name'>"+
+                        "         <input type='submit' name='add' value='Add Pet'>"+
                         "     <form>"+
-                        this.viewPets() +
+                        "<br><br>"+
+                        "     <form action='"+req.getContextPath()+"/' method='post'>" +
+                        "         Delete pet by name: <input type='text' name='deleteName'>"+
+                        "         <input type='submit' name='delete' value='Delete Pet'>"+
+                        "     <form>"+
+                        this.viewPets(pets) +
+                        "     <form action='"+req.getContextPath()+"/' method='post'>" +
+                        "         Search pet by name: <input type='text' name='searchName'>"+
+                        "         <input type='submit' name='search' value='Search'>"+
+                        "     <form>"+
+                        "<br>"+
+                        this.viewSearchResult(req)+
                         "</body>" +
                         "</html>"
         );
@@ -58,28 +71,67 @@ public class ClinicServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.pets.add(new Dog(new Animal(req.getParameter("name"))));
+
+        /**
+         * Add new name to pets
+         */
+        if(req.getParameter("add")!= null){
+            this.pets.add(new Dog(new Animal(req.getParameter("name"))));
+        }
+        /**
+         * Delete pet by name
+         */
+        if(req.getParameter("delete")!= null){
+            String deleteName = req.getParameter("deleteName");
+            pets.removeIf(pet -> deleteName.equals(pet.getName()));
+
+        }
         doGet(req, resp);
     }
 
     /**
-     * Create list of pets
-     * @return table of pets
+     * Create list of all pets
+     * @return string
      */
-    private String viewPets() {
+    private String viewPets(List<Pet> petsList) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<p>Pets</p>");
-        sb.append("<table style='border : 1px solid black'>");
+        sb.append("<p>Pets:</p>");
+        sb.append("<ul>");
 
         /**
-         * Add all pets to table
+         * Add all pets to list
          */
-        pets.forEach(pet->
-            sb.append("<tr><td style='border : 1px solid black'>").append(pet.getName()).append("</td></tr>")
+        petsList.forEach(pet->
+            sb.append("<li>").append(pet.getName()).append("</li>")
         );
 
 
-        sb.append("</table>");
+        sb.append("</ul>");
         return sb.toString();
     }
+
+
+    private String viewSearchResult(HttpServletRequest req) {
+
+        if(req.getParameter("search")!= null){
+            String searchName = req.getParameter("searchName");
+
+            /**
+             * Search pet by name using stream
+             */
+            List<Pet> result = pets.stream()
+                   // .filter(pet -> searchName.equals(pet.getName())) //Search only equals name
+                    .filter(pet -> pet.getName().toLowerCase().contains( searchName.toLowerCase())) //Search for subname
+                    .collect(Collectors.toList());
+            /**
+             * Result would be empty if there is no matching name in pets
+             */
+            if (result.isEmpty()) {
+                return "No pets found";
+            }
+            return viewPets(result);
+        }
+        return "";
+    }
+
 }
