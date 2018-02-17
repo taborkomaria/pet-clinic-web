@@ -1,4 +1,4 @@
-package ru.parsentev.servlets;
+package ru.parsentev.servlets.servlets;
 
 import pet.Animal;
 import pet.Dog;
