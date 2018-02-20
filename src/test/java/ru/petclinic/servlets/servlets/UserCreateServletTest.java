@@ -1,8 +1,8 @@
-package ru.parsentev.servlets.servlets;
+package ru.petclinic.servlets.servlets;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import ru.parsentev.servlets.store.UserCache;
+import ru.petclinic.servlets.store.UserCache;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

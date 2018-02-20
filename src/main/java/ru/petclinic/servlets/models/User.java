@@ -1,4 +1,4 @@
-package ru.parsentev.servlets.models;
+package ru.petclinic.servlets.models;
 
 import java.util.List;
 

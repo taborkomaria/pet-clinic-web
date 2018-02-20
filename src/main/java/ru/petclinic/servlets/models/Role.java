@@ -1,4 +1,4 @@
-package ru.parsentev.servlets.models;
+package ru.petclinic.servlets.models;
 
 public class Role extends Base {
     private String name;

@@ -1,6 +1,6 @@
-package ru.parsentev.servlets.store;
+package ru.petclinic.servlets.store;
 
-import ru.parsentev.servlets.models.User;
+import ru.petclinic.servlets.models.User;
 
 import java.util.Collection;
 

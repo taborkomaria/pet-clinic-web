@@ -1,6 +1,6 @@
-package ru.parsentev.servlets.servlets;
+package ru.petclinic.servlets.servlets;
 
-import ru.parsentev.servlets.store.UserCache;
+import ru.petclinic.servlets.store.UserCache;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
