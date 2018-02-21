@@ -65,7 +65,7 @@ public class HibernateStorage implements Storage {
         final Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         try {
-            session.delete(new User(id, null, null));
+            session.delete(get(id));
         } finally {
             tx.commit();
             session.close();
