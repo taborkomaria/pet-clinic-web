@@ -9,7 +9,7 @@
 
     <servlet>
         <servlet-name>ClinicServlet</servlet-name>
-        <servlet-class>ru.petclinic.servlets.servlets.ClinicServlet</servlet-class>
+        <servlet-class>ru.petclinic.servlets.ClinicServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -19,7 +19,7 @@
 
     <servlet>
         <servlet-name>UserViewServlet</servlet-name>
-        <servlet-class>ru.petclinic.servlets.servlets.UserViewServlet</servlet-class>
+        <servlet-class>ru.petclinic.servlets.UserViewServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -29,7 +29,7 @@
 
     <servlet>
         <servlet-name>UserCreateServlet</servlet-name>
-        <servlet-class>ru.petclinic.servlets.servlets.UserCreateServlet</servlet-class>
+        <servlet-class>ru.petclinic.servlets.UserCreateServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -39,7 +39,7 @@
 
     <servlet>
         <servlet-name>UserEditServlet</servlet-name>
-        <servlet-class>ru.petclinic.servlets.servlets.UserEditServlet</servlet-class>
+        <servlet-class>ru.petclinic.servlets.UserEditServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -49,7 +49,7 @@
 
     <servlet>
         <servlet-name>UserDeleteServlet</servlet-name>
-        <servlet-class>ru.petclinic.servlets.servlets.UserDeleteServlet</servlet-class>
+        <servlet-class>ru.petclinic.servlets.UserDeleteServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
