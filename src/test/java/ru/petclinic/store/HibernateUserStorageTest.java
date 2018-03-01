@@ -6,18 +6,16 @@ import ru.petclinic.models.Message;
 import ru.petclinic.models.Role;
 import ru.petclinic.models.User;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class HibernateStorageTest {
+public class HibernateUserStorageTest {
 
     @Ignore
     @Test
     public void testCreate() throws Exception {
-        final HibernateStorage storage = new HibernateStorage();
+        final HibernateUserStorage storage = new HibernateUserStorage();
         //create and add new user
         final int id = storage.add(new User(-1, "hibenateTest", "hibenateTest@test"));
         //get user by id
@@ -36,7 +34,7 @@ public class HibernateStorageTest {
     }
     @Test
     public void testCreateUser() throws Exception {
-        final HibernateStorage storage = new HibernateStorage();
+        final HibernateUserStorage storage = new HibernateUserStorage();
 
         //create user
         User user = new User();
